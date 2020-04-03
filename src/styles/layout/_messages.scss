@@ -1,0 +1,237 @@
+.messages {
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  background: center url(https://i.pinimg.com/originals/17/a6/31/17a631d4eda3f5f6636efac0e79c9473.jpg);
+  position: relative;
+  overflow-y: auto;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(193, 193, 193, .7);
+  }
+
+  &.hide {
+    display: none;
+  }
+}
+
+.messages-text {
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  padding: 10px 20px;
+  margin-bottom: 50px;
+
+  &_inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
+}
+
+.messages-preloader {
+  display: none;
+  overflow: hidden;
+}
+
+.my-message-wrap, .friend-message-wrap {
+  display: flex;
+  overflow: hidden;
+
+  .container-inline {
+    border-radius: 8px;
+    background: #e0ffc1;
+    padding: 10px;
+    position: relative;
+    margin-left: auto;
+    min-width: 43px;
+    height: max-content;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 0;
+      width: 0;
+      border: 10px solid transparent;
+      border-top-color: #e0ffc1;
+      position: absolute;
+      right: -19px;
+      bottom: 4px;
+      transform: rotate(-89deg);
+    }
+  }
+
+  p {
+    @include font-style($dark_color, 14px, 16px, 400);
+    margin: 0;
+    padding-bottom: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .message-item__time {
+    min-width: 10%;
+    @include font-style(#7d7d7d, 12px, 12px, 400);
+    text-align: right;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+.friend-message-wrap {
+
+  .container-inline {
+    background: #fff;
+    margin-left: inherit;
+    margin-right: auto;
+
+    &::before {
+      border-top-color: #fff;
+      right: inherit;
+      left: -19px;
+      transform: rotate(89deg);
+    }
+  }
+
+  p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.messages-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+
+  form {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+.form-wrap {
+  height: 8%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 10px;
+  align-items: center;
+  padding: 7px 0;
+
+}
+
+.fa-smile-wink {
+  height: 40px;
+  width: 40px;
+}
+
+.send-area-wrap {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.messages-footer__send-area {
+  height: 38px;
+  width: 100%;
+  border-radius: 20px;
+  @include font-style($dark_color, 12px, 1, 400);
+  overflow: hidden;
+  resize: none;
+  background: $light_grey_color;
+  padding: 7px 20px;
+  border: 1px solid $light_grey_color;
+
+  &:focus {
+    outline: none;
+    border-color: $red_color;
+  }
+
+  &::placeholder {
+    text-align: center;
+  }
+}
+
+.button-send-wrap {
+  height: 100%;
+  min-width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.messages-footer__button-send {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: $dark_color;
+  @include font-style(#fff, 14px, 14px, 400);
+  text-transform: uppercase;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: $box-shadow;
+
+  &:focus {
+    outline: none;
+    background: $red_color;
+    box-shadow: none;
+  }
+}
+
+.messages-preloader {
+  display: none;
+}
+
+.messages-preloader__title {
+  @include fontSize($L_FontSize, $cursiveFontFamily, black, $fontW: italic);
+}
+
+@media (min-width: $pc) {
+  .messages-preloader {
+    display: block;
+  }
+  .messages-preloader__title {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .messages-text {
+    margin-bottom: 10px;
+  }
+  .messages-footer {
+    position: relative;
+  }
+  .messages-footer__send-area {
+    @include font-style($dark_color, 16px, 1, 400);
+    padding: 7px 20px;
+
+    &::placeholder {
+      padding-top: 5px;
+      text-align: center;
+    }
+  }
+}
+
+
+
